@@ -1,4 +1,11 @@
 .App {
   height: 100vh;
-  background-color: darkslategrey;
+  background-color: darkslategray;
+  position: relative;
+}
+
+.App svg {
+  position: absolute;
+  color: white;
+  font-size: 100px;
 }
