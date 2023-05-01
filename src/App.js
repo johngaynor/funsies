@@ -19,34 +19,44 @@ function App() {
       icon.style.top = `${yPos}px`;
 
       const direction = Math.floor(Math.random() * 4);
-      // console.log("index: " + index + " number: " + direction);
+
+      var xSpeed = 1;
+      var ySpeed = 1;
+
+      // console.log(xSpeed);
+      // console.log(ySpeed);
+
+      console.log("old xSpeed: " + xSpeed);
+      console.log("old ySpeed: " + ySpeed);
 
       // Set a random speed and direction
-      var xSpeed = 0.25;
-      var ySpeed = 0.5;
-
-      // Set direction - 0: SE, 1: SW, 2: NW, 3: NE
-      switch (direction) {
-        case 0:
-          break;
-        case 1:
-          xSpeed = -xSpeed;
-          break;
-        case 2:
-          // xSpeed = -xSpeed;
-          // ySpeed = -Math.abs(ySpeed);
-          break;
-        case 3:
-          ySpeed = -ySpeed;
-          icon.style.color = "red";
-          break;
+      if (direction === 0) {
+        xSpeed = Math.abs(xSpeed);
+        ySpeed = Math.abs(ySpeed);
+      } else if (direction === 1) {
+        icon.style.color = "blue";
+        xSpeed = -Math.abs(xSpeed);
+        ySpeed = Math.abs(ySpeed);
+      } else if (direction === 2) {
+        icon.style.color = "green";
+        xSpeed = -Math.abs(xSpeed);
+        ySpeed = -Math.abs(ySpeed);
+      } else if (direction === 3) {
+        icon.style.color = "yellow";
+        xSpeed = Math.abs(xSpeed);
+        ySpeed = -Math.abs(ySpeed);
       }
+
+      console.log("new xSpeed: " + xSpeed);
+      console.log("new ySpeed: " + ySpeed);
 
       // Move the icon on each animation frame
       function moveIcon() {
         // get current positions
         let currentXPos = parseFloat(icon.style.left);
         let currentYPos = parseFloat(icon.style.top);
+        console.log("currentXPos: " + currentXPos);
+        console.log("currentYPos: " + currentYPos);
 
         // changing xPos
         if (currentXPos > containerWidth + 50) {
@@ -71,6 +81,11 @@ function App() {
         icon.style.top = `${currentYPos}px`;
       }
 
+      // moveIcon();
+      // moveIcon();
+      // moveIcon();
+      // moveIcon();
+
       function animate() {
         requestAnimationFrame(animate);
         moveIcon();
@@ -82,10 +97,6 @@ function App() {
 
   return (
     <div className="App">
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
       <FontAwesomeIcon icon={faPoo} />
     </div>
   );
