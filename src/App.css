@@ -2,10 +2,11 @@
   height: 100vh;
   background-color: darkslategray;
   position: relative;
+  overflow: hidden;
 }
 
 .App svg {
   position: absolute;
-  color: white;
+  color: grey;
   font-size: 100px;
 }

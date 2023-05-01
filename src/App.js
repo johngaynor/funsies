@@ -1,6 +1,6 @@
 import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPoo } from "@fortawesome/free-solid-svg-icons";
+import { faBriefcaseClock, faPoo } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 
 function App() {
@@ -11,38 +11,64 @@ function App() {
     const containerHeight = container.offsetHeight;
     // alert(containerWidth);
 
-    icons.forEach((icon) => {
+    icons.forEach((icon, index) => {
       // Assigning a random starting position and set the style
       const xPos = Math.random() * containerWidth;
       const yPos = Math.random() * containerHeight;
-      // console.log(xPos);
-      // console.log(yPos);
       icon.style.left = `${xPos}px`;
       icon.style.top = `${yPos}px`;
 
+      const direction = Math.floor(Math.random() * 4);
+      // console.log("index: " + index + " number: " + direction);
+
       // Set a random speed and direction
-      const xSpeed = 2;
-      // const ySpeed = 16;
+      var xSpeed = 0.25;
+      var ySpeed = 0.5;
+
+      // Set direction - 0: SE, 1: SW, 2: NW, 3: NE
+      switch (direction) {
+        case 0:
+          break;
+        case 1:
+          xSpeed = -xSpeed;
+          break;
+        case 2:
+          // xSpeed = -xSpeed;
+          // ySpeed = -Math.abs(ySpeed);
+          break;
+        case 3:
+          ySpeed = -ySpeed;
+          icon.style.color = "red";
+          break;
+      }
 
       // Move the icon on each animation frame
       function moveIcon() {
-        // let currentXPos = parseInt(icon.style.left, 10);
-        // let currentYPos = icon.style.top.replace("px", "");
-        // console.log("current Y: " + currentYPos);
-        // currentYPos += ySpeed;
-        // console.log("new Y: " + currentYPos);
-        // icon.style.top = `${currentYPos}px`;
+        // get current positions
+        let currentXPos = parseFloat(icon.style.left);
+        let currentYPos = parseFloat(icon.style.top);
 
-        let currentXPos = parseInt(icon.style.left);
-        console.log("current X: " + currentXPos);
-
+        // changing xPos
         if (currentXPos > containerWidth + 50) {
           currentXPos = -50;
+        } else if (currentXPos < -50) {
+          currentXPos = containerWidth + 50;
         } else {
           currentXPos += xSpeed;
         }
-        console.log("new X: " + currentXPos);
+
+        // changing yPos
+        if (currentYPos > containerHeight + 50) {
+          currentYPos = -50;
+        } else if (currentYPos < -50) {
+          currentYPos = containerHeight + 50;
+        } else {
+          currentYPos += ySpeed;
+        }
+
+        // update the icon position
         icon.style.left = `${currentXPos}px`;
+        icon.style.top = `${currentYPos}px`;
       }
 
       function animate() {
@@ -56,6 +82,10 @@ function App() {
 
   return (
     <div className="App">
+      <FontAwesomeIcon icon={faPoo} />
+      <FontAwesomeIcon icon={faPoo} />
+      <FontAwesomeIcon icon={faPoo} />
+      <FontAwesomeIcon icon={faPoo} />
       <FontAwesomeIcon icon={faPoo} />
     </div>
   );
