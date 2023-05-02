@@ -1,8 +1,8 @@
 import "./App.css";
+import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBriefcaseClock, faPoo } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useSyncExternalStore } from "react";
-import { INDEX_SIZE_ERR } from "domexception";
 
 function App() {
   useEffect(() => {
@@ -23,12 +23,13 @@ function App() {
       const direction = Math.floor(Math.random() * 4);
 
       var xSpeed = 0;
-      // var ySpeed = 0;
+      var ySpeed = 0;
 
       switch (direction) {
         case 0:
           icon.style.color = "red";
           xSpeed = 1;
+          ySpeed = 1;
           console.log("red index: " + index);
           break;
         case 1:
@@ -45,7 +46,7 @@ function App() {
         let currentXPos = parseFloat(icon.style.left);
         let currentYPos = parseFloat(icon.style.top);
         currentXPos += xSpeed;
-        // currentYPos += ySpeed;
+        currentYPos += ySpeed;
 
         // changing xPos
         // if (currentXPos > containerWidth + 50) {
@@ -81,7 +82,6 @@ function App() {
 
   return (
     <div className="App">
-      <FontAwesomeIcon icon={faPoo} />
       <FontAwesomeIcon icon={faPoo} />
       <FontAwesomeIcon icon={faPoo} />
       <FontAwesomeIcon icon={faPoo} />
