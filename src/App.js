@@ -26,24 +26,16 @@ function App() {
 
   useEffect(() => {
     const icons = document.querySelectorAll("svg");
-    // const container = document.querySelector(".App");
-    // const containerWidth = container.offsetWidth;
     const containerWidth = window.innerWidth;
-    // const containerWidth = width;
-    // const containerHeight = container.offsetHeight;
     const containerHeight = window.innerHeight;
 
     const numIcons = icons.length;
-    const iconSize = 50;
     const spacingX = containerWidth / (numIcons + 1);
-    // const spacingY = containerHeight / (numIcons + 1);
 
     icons.forEach((icon, index) => {
       // Assigning a random starting position and set the style
-      // const xPos = Math.random() * containerWidth;
       const yPos = Math.random() * (containerHeight * 0.8) + 50;
-      const xPos = (index + 1) * spacingX - iconSize / 2;
-      // const yPos = Math.floor(Math.random() * 4) * spacingY;
+      const xPos = (index + 1) * spacingX - 50 / 2;
       const direction = Math.floor(Math.random() * 4);
       icon.setAttribute("direction", direction);
       icon.style.left = `${xPos}px`;
@@ -124,7 +116,12 @@ function App() {
         const otherIcons = Array.from(icons).filter((i) => i !== icon);
         for (let otherIcon of otherIcons) {
           if (checkCollision(icon, otherIcon)) {
-            if (currentDirection % 2 === 0) {
+            let iconDirection = parseInt(icon.getAttribute("direction"));
+            let otherIconDirection = parseInt(
+              otherIcon.getAttribute("direction")
+            );
+
+            if (currentDirection === 0 || currentDirection === 2) {
               icon.setAttribute("direction", 3);
               otherIcon.setAttribute("direction", 1);
             } else {
