@@ -48,44 +48,45 @@ function App() {
             break;
         }
 
-        // var changedDirection = currentDirection;
-        // changing xPos, containerWidth - 100 depends on the size of the icon
-        if (currentXPos > containerWidth - 100) {
-          if (currentDirection === 0) {
-            currentDirection = 1;
+        function changeDirection(direction) {
+          // changing xPos, containerWidth - 100 depends on the size of the icon
+          if (currentXPos > containerWidth - 100) {
+            if (direction === 0) {
+              direction = 1;
+            }
+            if (direction === 3) {
+              direction = 2;
+            }
+          } else if (currentXPos < 0) {
+            if (direction === 1) {
+              direction = 0;
+            }
+            if (direction === 2) {
+              direction = 3;
+            }
           }
-          if (currentDirection === 3) {
-            currentDirection = 2;
+          // changing yPos
+          if (currentYPos > containerHeight - 100) {
+            if (direction === 0) {
+              direction = 3;
+            }
+            if (direction === 1) {
+              direction = 2;
+            }
+          } else if (currentYPos < 0) {
+            if (direction === 2) {
+              direction = 1;
+            }
+            if (direction === 3) {
+              direction = 0;
+            }
           }
-        } else if (currentXPos < 0) {
-          if (currentDirection === 1) {
-            currentDirection = 0;
-          }
-          if (currentDirection === 2) {
-            currentDirection = 3;
-          }
-        }
-        // changing yPos
-        if (currentYPos > containerHeight - 100) {
-          if (currentDirection === 0) {
-            currentDirection = 3;
-          }
-          if (currentDirection === 1) {
-            currentDirection = 2;
-          }
-        } else if (currentYPos < 0) {
-          if (currentDirection === 2) {
-            currentDirection = 1;
-          }
-          if (currentDirection === 3) {
-            currentDirection = 0;
-          }
+
+          return direction;
         }
 
+        currentDirection = changeDirection(currentDirection);
         icon.setAttribute("direction", currentDirection);
-
-        // currentXPos += xSpeed;
-        // currentYPos += ySpeed;
 
         currentXPos +=
           currentDirection === 0 || currentDirection === 3
