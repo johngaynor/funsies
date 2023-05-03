@@ -5,8 +5,6 @@ import { faBriefcaseClock, faPoo } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useSyncExternalStore } from "react";
 
 function App() {
-  // const [iconDirection, setIconDirection] = useState(0);
-
   useEffect(() => {
     const icons = document.querySelectorAll("svg");
     const container = document.querySelector(".App");
@@ -31,30 +29,22 @@ function App() {
         let currentYPos = parseFloat(icon.style.top);
         let currentDirection = parseInt(icon.getAttribute("direction"));
 
-        var xSpeed = 0.5;
-        var ySpeed = 0.1;
+        var xSpeed = 2;
+        var ySpeed = 2;
 
-        // switch statement to handle directions
+        // switch statement to handle directions -> this will get deleted soon
         switch (currentDirection) {
           case 0:
             icon.style.color = "red";
-            xSpeed = Math.abs(xSpeed);
-            ySpeed = Math.abs(ySpeed);
             break;
           case 1:
             icon.style.color = "blue";
-            xSpeed = -Math.abs(xSpeed);
-            ySpeed = Math.abs(ySpeed);
             break;
           case 2:
             icon.style.color = "green";
-            xSpeed = -Math.abs(xSpeed);
-            ySpeed = -Math.abs(ySpeed);
             break;
           case 3:
             icon.style.color = "yellow";
-            xSpeed = Math.abs(xSpeed);
-            ySpeed = -Math.abs(ySpeed);
             break;
         }
 
@@ -94,8 +84,15 @@ function App() {
 
         icon.setAttribute("direction", currentDirection);
 
-        currentXPos += xSpeed;
-        currentYPos += ySpeed;
+        // currentXPos += xSpeed;
+        // currentYPos += ySpeed;
+
+        currentXPos +=
+          currentDirection === 0 || currentDirection === 3
+            ? Math.abs(xSpeed)
+            : -Math.abs(xSpeed);
+        currentYPos +=
+          currentDirection <= 1 ? Math.abs(ySpeed) : -Math.abs(ySpeed);
 
         // update the icon position
         icon.style.left = `${currentXPos}px`;
@@ -114,7 +111,6 @@ function App() {
   return (
     <div className="App">
       <FontAwesomeIcon icon={faPoo} />
-      {/* <FontAwesomeIcon icon={faPoo} />
       <FontAwesomeIcon icon={faPoo} />
       <FontAwesomeIcon icon={faPoo} />
       <FontAwesomeIcon icon={faPoo} />
@@ -131,23 +127,6 @@ function App() {
       <FontAwesomeIcon icon={faPoo} />
       <FontAwesomeIcon icon={faPoo} />
       <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} />
-      <FontAwesomeIcon icon={faPoo} /> */}
     </div>
   );
 }
