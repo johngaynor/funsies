@@ -137,14 +137,6 @@ export default function IconFloat(props) {
 
   return (
     <>
-      {/* <FontAwesomeIcon icon={faCode} />
-      <FontAwesomeIcon icon={faDumbbell} />
-      <FontAwesomeIcon icon={faCodeCommit} />
-      <FontAwesomeIcon icon={faCodeBranch} />
-      <FontAwesomeIcon icon={faCodeMerge} />
-      <FontAwesomeIcon icon={faCodeFork} />
-      <FontAwesomeIcon icon={faCodePullRequest} /> */}
-
       {props.icons.map((icon, index) => {
         const faIcon = {
           faCode,
@@ -163,10 +155,4 @@ export default function IconFloat(props) {
       })}
     </>
   );
-}
-
-{
-  /* {props.icons.map((index, icon) => (
-        <FontAwesomeIcon icon={icon} style={{ color: "white" }} />
-      ))} */
 }
